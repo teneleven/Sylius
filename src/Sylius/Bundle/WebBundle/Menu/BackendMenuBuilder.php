@@ -87,11 +87,6 @@ class BackendMenuBuilder extends MenuBuilder
             'labelAttributes'    => array('class' => 'nav-header')
         );
 
-        $menu->addChild('dashboard', array(
-            'route' => 'sylius_backend_dashboard',
-            'labelAttributes' => array('icon' => 'icon-dashboard'),
-        ))->setLabel($this->translate(sprintf('sylius.backend.menu.%s.dashboard', 'sidebar')));
-
         $this->addAssortmentMenu($menu, $childOptions, 'sidebar');
         $this->addSalesMenu($menu, $childOptions, 'sidebar');
         $this->addCustomersMenu($menu, $childOptions, 'sidebar');
@@ -200,6 +195,10 @@ class BackendMenuBuilder extends MenuBuilder
             'route' => 'sylius_backend_user_index',
             'labelAttributes' => array('icon' => 'icon-user'),
         ))->setLabel($this->translate(sprintf('sylius.backend.menu.%s.users', $section)));
+        $child->addChild('groups', array(
+            'route' => 'sylius_backend_group_index',
+            'labelAttributes' => array('icon' => 'icon-group'),
+        ))->setLabel($this->translate(sprintf('sylius.backend.menu.%s.group', $section)));
     }
 
     /**
