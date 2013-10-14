@@ -1,0 +1,48 @@
+{% extends 'SyliusWebBundle:Backend:layout.html.twig' %}
+
+{% import 'SyliusWebBundle:Backend/Macros:alerts.html.twig' as alerts %}
+{% import 'SyliusWebBundle:Backend/Macros:buttons.html.twig' as buttons %}
+
+{% block content %}
+<div class="page-header">
+<h1>Review Details</h1>
+</div>
+
+<div class="well well-small">
+    {{ buttons.manage(path('sylius_backend_review_index'), 'Manage Reviews') }}
+    {{ buttons.delete(path('sylius_backend_review_delete', {'id': review.id})) }}
+	<a class="btn btn-success" href="{{ path('sylius_backend_review_approve', {'id': review.id}) }}">Approve</a>
+	<a class="btn btn-error" href="{{ path('sylius_backend_review_deny', {'id': review.id}) }}">Deny</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Status</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Rating</th>
+            <th>Updated At</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ review.id }}</td>
+            <td>{{ review.moderationStatus }}</td>
+            <td>{{ review.reviewerName }}</td>
+            <td>{{ review.reviewerEmail }}</td>
+            <td>{{ review.rating }}</td>
+            <td>{{ review.updatedAt|date }}</td>
+            <td>
+                <div class="pull-right">
+	                {{ buttons.show(path('sylius_backend_review_show', {'id': review.id})) }}
+	                {{ buttons.delete(path('sylius_backend_review_delete', {'id': review.id})) }}
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+{% endblock %}

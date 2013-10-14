@@ -1,0 +1,11 @@
+{% if reviews|length > 2 %}
+    {% for review in reviews %}
+        <div class="review">
+            <div class="star" data-score="{{ review.rating }}"></div>
+            <h4>{{ review.title }}<small>by {{ review.reviewerName }}</small></h4>
+            <p>{{ review.comment }}</p>
+        </div>
+    {% endfor %}
+{% else %}
+No Reviews Yet
+{% endif %}

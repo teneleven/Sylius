@@ -1,0 +1,7 @@
+sylius_review_product:
+    pattern: /p/{slug}/review
+    methods:  [POST]
+    defaults:
+        _controller: SyliusWebBundle:Frontend/Review/ProductReview:handleReview
+        _sylius:
+            criteria: {slug: $slug}

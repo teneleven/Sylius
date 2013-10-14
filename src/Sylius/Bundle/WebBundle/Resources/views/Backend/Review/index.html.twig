@@ -1,0 +1,24 @@
+{% extends 'SyliusWebBundle:Backend:layout.html.twig' %}
+
+{% import 'SyliusWebBundle:Backend/Macros:buttons.html.twig' as buttons %}
+{% from 'SyliusWebBundle:Backend/Review:macros.html.twig' import list %}
+
+{% block content %}
+	<div class="page-header">
+	    <h1>Reviews</h1>
+	</div>
+
+	<div class="well well-small">
+	    {{ buttons.create(path('sylius_backend_review_create'), 'Create New') }}
+	</div>
+
+	<div class="row-fluid">
+	    <div class="span5">
+
+	    </div>
+	    <div class="span7">
+	    </div>
+	</div>
+	{{ list(reviews) }}
+
+{% endblock %}
