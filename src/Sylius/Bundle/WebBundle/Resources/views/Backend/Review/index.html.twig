@@ -1,24 +1,27 @@
 {% extends 'SyliusWebBundle:Backend:layout.html.twig' %}
 
 {% import 'SyliusWebBundle:Backend/Macros:buttons.html.twig' as buttons %}
+{% from 'SyliusWebBundle:Backend/Macros:misc.html.twig' import pagination %}
 {% from 'SyliusWebBundle:Backend/Review:macros.html.twig' import list %}
 
+{% block topbar %}
+<ol class="breadcrumb">
+    <li>{{ 'sylius.breadcrumb.assortment'|trans }}</li>
+    <li>Reviews</li>
+</ol>
+{% endblock %}
+
 {% block content %}
-	<div class="page-header">
-	    <h1>Reviews</h1>
-	</div>
+<div class="page-header">
+    <div class="actions-menu">
+        {{ buttons.create(path('sylius_backend_review_create'), 'Create Review') }}
+        {{ buttons.manage(path('sylius_backend_review_index'), 'Manage Reviews') }}
+    </div>
+    <h1><i class="icon-th"></i> Reviews</h1>
+</div>
 
-	<div class="well well-small">
-	    {{ buttons.create(path('sylius_backend_review_create'), 'Create New') }}
-	</div>
-
-	<div class="row-fluid">
-	    <div class="span5">
-
-	    </div>
-	    <div class="span7">
-	    </div>
-	</div>
-	{{ list(reviews) }}
+{{ pagination(reviews) }}
+{{ list(reviews) }}
+{{ pagination(reviews) }}
 
 {% endblock %}
