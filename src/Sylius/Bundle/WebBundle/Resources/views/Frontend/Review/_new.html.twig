@@ -1,45 +1,33 @@
-<div class="row">
-    <div class="col-sm-10 col-md-8">
-		{{ form_start(form, { 'action': path('sylius_review_product', { 'slug' : product.slug })}) }}
-		    {{ form_errors(form) }}
-	        <div id="star-rating form-group">
-	            {{ form_label(form.rating,'Please rate this product form 1 - 5 stars:') }}
-		        {{ form_errors(form.rating) }}
-		        {{ form_widget(form.rating, {'attr': {'class': 'form-control'}}) }}
-		        	<style type="text/css">
-		        		#guest_review_rating{display:none;}
-		        	</style>
-		        <noscript>
-		        	<style type="text/css">
-		        		#guest_review_rating{display:block;}
-		        	</style>
-		        </noscript>
-	        </div>
-	        {% if form.name is defined %}
-	        <div class="form-group">
-	            {{ form_label(form.name,'Reviewer Name') }}
-	            {{ form_errors(form.name) }}
-	            {{ form_widget(form.name, {'attr': {'placeholder': 'Name/Nickname', 'class': 'form-control'}}) }}
-	        </div>
-	        {% endif %}
-	        {% if form.email is defined %}
-	        <div class="form-group">
-	            {{ form_label(form.email,'Email address') }}
-	            {{ form_errors(form.email) }}
-	            {{ form_widget(form.email, {'attr': {'placeholder': 'Enter email address', 'class': 'form-control'}}) }}
-	        </div>
-	        {% endif %}
-	        <div class="form-group">
-	            {{ form_label(form.title,'Review Title') }}
-	            {{ form_errors(form.title) }}
-	            {{ form_widget(form.title, {'attr': {'placeholder': 'Summary of your review', 'class': 'form-control'}}) }}
-	        </div>
-	        <div class="form-group">
-	            {{ form_label(form.comment,'Review') }}
-	            {{ form_errors(form.comment) }}
-	            {{ form_widget(form.comment, {'attr': {'placeholder': 'Describe your review', 'class': 'form-control'}}) }}
-	        </div>
-	        <button type="submit" class="btn">Submit</button>
-        {{ form_end(form) }}
+{{ form_start(form, { 'action': path('sylius_review_product', { 'slug' : product.slug })}) }}
+    {{ form_errors(form) }}
+    <div class="form-group">
+        {{ form_label(form.rating,'Please rate this product form 1 - 5 stars:') }}
+        {{ form_errors(form.rating) }}
+        {{ form_widget(form.rating, {'attr': {'class': 'form-control'}}) }}
     </div>
-</div>
+    {% if form.name is defined %}
+	    <div class="form-group">
+	        {{ form_label(form.name,'Reviewer Name') }}
+	        {{ form_errors(form.name) }}
+	        {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+	    </div>
+    {% endif %}
+    {% if form.email is defined %}
+	    <div class="form-group">
+	        {{ form_label(form.email,'Email address') }}
+	        {{ form_errors(form.email) }}
+	        {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+	    </div>
+    {% endif %}
+    <div class="form-group">
+        {{ form_label(form.title,'Review Title') }}
+        {{ form_errors(form.title) }}
+        {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.comment,'Review') }}
+        {{ form_errors(form.comment) }}
+        {{ form_widget(form.comment, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <button type="submit" class="btn">Submit</button>
+{{ form_end(form) }}

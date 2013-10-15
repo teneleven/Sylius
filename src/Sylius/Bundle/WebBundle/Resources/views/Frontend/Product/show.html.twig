@@ -49,6 +49,13 @@
         <h4>{{ 'sylius.product.description'|trans }}</h4>
         <p>{{ product.description|default('sylius.product.no_description')|trans|raw }}</p>
     </div>
+    <div class="col-md-6">
+        <h4>Reviews</h4>
+        {% render(controller("SyliusWebBundle:Frontend/Review/ProductReview:list", { 'product': product })) %}
+        
+        <h4>Write Your Own Review</h4>
+        {% render(controller("SyliusWebBundle:Frontend/Review/ProductReview:new", { 'product': product })) %}
+    </div>
 </div>
 <hr>
 <div class="row">
