@@ -1,31 +1,28 @@
 {% extends 'SyliusWebBundle:Backend:layout.html.twig' %}
 
 {% from 'SyliusWebBundle:Backend/Macros:actions.html.twig' import update %}
-{% import 'SyliusWebBundle:Backend/Macros:buttons.html.twig' as buttons %}
 
-{% block javascripts %}
-{{ parent() }}
-{% javascripts output='assets/compiled/backend_product.js'
-    '@SyliusShippingBundle/Resources/assets/js/prototype-handler.js'
-    '@SyliusWebBundle/Resources/assets/js/dynamic-property-types.js'
-%}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-{% endjavascripts %}
+{% block topbar %}
+<ol class="breadcrumb">
+    <li>{{ 'sylius.breadcrumb.assortment'|trans }}</li>
+    <li><a href="{{ path('sylius_backend_review_index') }}">Reviews</a></li>
+    <li>{{ review.title }}</li>
+    <li>Edit</li>
+</ol>
 {% endblock %}
 
 {% block content %}
 <div class="page-header">
-<h1>Update Review</h1>
+    <div class="pull-right">
+        <a class="btn btn-success" href="{{ path('sylius_backend_review_approve', {'id': review.id}) }}">Approve</a>
+        <a class="btn btn-danger" href="{{ path('sylius_backend_review_show', {'id': review.id}) }}">Deny</a>
+    </div>
+    <h1><i class="icon-pencil"></i> Editing Review</h1>
 </div>
 
-<div class="well well-small">
-    {{ buttons.manage(path('sylius_backend_review_index'), 'Manage Reviews') }}
-    {{ buttons.delete(path('sylius_backend_review_delete', {'id': review.id})) }}
-	<a class="btn btn-success" href="{{ path('sylius_backend_review_approve', {'id': review.id}) }}">Approve</a>
-	<a class="btn btn-danger" href="{{ path('sylius_backend_review_show', {'id': review.id}) }}">Deny</a>
-</div>
+{{ form_errors(form) }}
 
-<form action="{{ path('sylius_backend_review_update', {'id': review.id}) }}" method="post" class="form-horizontal" {{ form_enctype(form) }} novalidate>
+<form action="{{ path('sylius_backend_review_update', {'id': review.id}) }}" method="post" class="form-horizontal" novalidate>
     <input type="hidden" name="_method" value="PUT">
     {% include 'SyliusWebBundle:Backend/Review:_form.html.twig' %}
     {{ update() }}
